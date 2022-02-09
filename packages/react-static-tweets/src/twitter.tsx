@@ -4,12 +4,17 @@ import { ConfigInterface } from 'swr'
 // TODO: make this more specific
 export type TweetAst = Array<any>
 
+export type TweetComponents = Record<string, React.ElementType>;
+
 export type TwitterContextValue = {
   // static tweet ast info
   tweetAstMap: TweetAstMap
 
   // SWR config for dynamically fetching tweet ast info
   swrOptions: ConfigInterface
+
+  // Alternative components to use for rendering tweet ast nodes
+  components: TweetComponents
 }
 
 export type TweetAstMap = {
@@ -29,7 +34,8 @@ const TwitterContext = createContext<TwitterContextValue>({
       fetch(
         `https://twitter-search.vercel.app/api/get-tweet-ast/${id}`
       ).then((r) => r.json())
-  }
+  },
+  components: {}
 })
 
 export function useTwitterContext() {

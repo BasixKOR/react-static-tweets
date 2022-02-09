@@ -47,6 +47,11 @@ function handleNode(node, components, i = undefined) {
   return element
 }
 
-export default function Node({ components, node }) {
+interface NodeProps {
+  components: Record<string, React.ElementType>,
+  node: any,
+}
+
+export default function Node({ components, node }: NodeProps) {
   return handleNode(node, components)
 }

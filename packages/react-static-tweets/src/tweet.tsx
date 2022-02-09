@@ -28,7 +28,7 @@ const Tweet = forwardRef<HTMLElement, TweetProps>(
       <article ref={ref} className={cs('static-tweet', className)}>
         {tweetAst && (
           <>
-            <Node components={components} node={tweetAst[0]} />
+            <Node components={{ ...twitter.components, ...components }} node={tweetAst[0]} />
 
             {caption != null ? (
               <p className='static-tweet-caption'>{caption}</p>
